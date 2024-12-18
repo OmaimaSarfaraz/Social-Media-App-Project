@@ -1,3 +1,45 @@
+function showSignup() {
+    document.getElementById('login-box').style.display = 'none';
+    document.getElementById('signup-box').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('signup-box').style.display = 'none';
+    document.getElementById('login-box').style.display = 'block';
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const validUsernames = ["Omaima Sarfaraz", "omaima@gmail.com"];
+
+    if (validUsernames.includes(username) && password === "123@pass") { 
+        authenticate();
+    } else {
+        alert("Invalid login credentials!");
+    }
+}
+
+function signup() {
+    const username = document.getElementById('signup-username').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+    } else if (username && email && password) {
+        authenticate(); 
+    } else {
+        alert("Please fill in all fields!");
+    }
+}
+
+function authenticate() {
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('protected-content').style.display = 'block';
+}
+
 const menuItems = document.querySelectorAll('.menu-item');
  
 const messagesNotification = document.querySelector('#messages-notification');
