@@ -45,9 +45,13 @@
                 <input type="search" placeholder="Search for creators, posts, and inspirations">
             </div>
             <div class="create"> 
-                <label class="btn btn-primary" for="#create-post">Create</label>
+                <label class="btn btn-primary" for="create-post">Create</label>
                 <div class="profile-photo">
                     <img src="./Images/d.jpg">
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical" id="menu-icon"></i>
+                <div class="popup-menu" id="popup-menu">
+                    <button class="logout-btn" onclick="logout()">Log Out</button>
                 </div>
             </div>
         </div>
@@ -181,8 +185,21 @@
                     <img src="./Images/d.jpg">
                 </div>
                 <input type="text" placeholder="Whats on your mind, Omaima? " id="create-post">
-                <input type="submit" value="Post" class="btn btn-primary">
+                <label class="btn btn-primary">Post</label>
             </form>
+                                        <!-- Popup Modal -->
+<div class="popup-overlay" id="popup-overlay" style="display: none;">
+    <div class="popup">
+        <h2>Create Post</h2>
+        <form id="popup-form">
+            <input type="text" id="post-username" placeholder="Enter Username" required>
+            <input type="text" id="post-location" placeholder="Enter Location" >
+            <input type="text" id="post-caption" placeholder="Enter Caption" >
+            <input type="file" id="post-image" accept="image/*" required>
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+        </form>
+    </div>
+</div>
             <div class="feeds">
                 <div class="feed">
                     <div class="head">
@@ -194,7 +211,7 @@
                                 <h3>farzeeen.alii</h3>
                                 <small>Karachi, Pakistan</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -221,53 +238,10 @@
                     </div>
 
                     <div class="caption">
-                        <p><b>Farzeen Ali</b> Life.</p>
+                        <p><b>farzeeen.alii</b> Life.</p>
                     </div>
                     <div class="comments text-muted">
                         View all 20 comments
-                    </div>
-                </div>
-                <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="./Images/SS (2).jpg">
-                            </div>
-                            <div class="info">
-                                <h3>Mariyam Salman</h3>
-                                <small>Karachi, Pakistan</small>
-                            </div>
-                           
-                        </div>
-                        <span class="edit">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </span>
-                    </div>
-                    <div class="photo">
-                        <img src="./Images/USS.jpg">
-                    </div>
-                    <div class="action-button">
-                        <div class="interaction-button">
-                            <span><i class="fa-regular fa-heart"></i></span>
-                            <span><i class="fa-regular fa-comment-dots"></i></span>
-                             <span><i class="fa-solid fa-share-nodes"></i></span> 
-                        </div>
-                        <div class="bookmark">
-                            <span><i class="fa-regular fa-bookmark"></i></span>
-                        </div>
-                    </div>
-                    <div class="liked-by">
-                        <span><img src="./Images/pic 11.jpg"></span>
-                        <span><img src="./Images/pic 17.jpg"></span>
-                        <span><img src="./Images/dp.jpg" width="50" height="50"></span>
-                        <p>Liked by <b>Omaima_siddique</b> and <b> others</b></p>
-                    </div>
-
-                    <div class="caption">
-                        <p><b>Mariyam Salman</b> Fan Moment <span class="hash-tag">#meetup</span></p>
-                    </div>
-                    <div class="comments text-muted">
-                        View all 18 comments
                     </div>
                 </div>
                 <div class="feed">
@@ -323,7 +297,7 @@
                                 <h3>alirazaishere</h3>
                                 <small>Lahore</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -366,7 +340,7 @@
                                 <h3>anmol_baloxh</h3>
                                 <small>Karachi</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -409,7 +383,7 @@
                                 <h3>ferozekhan</h3>
                                 <small>Islamabad</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -449,10 +423,10 @@
                                 <img src="./Images/Screenshot (8).png"  height="45" width="60">
                             </div>
                             <div class="info">
-                                <h3>shadab0800</h3>
+                                <h3>shadab08000</h3>
                                 <small>Rawalpindi, Pakistan</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -495,7 +469,7 @@
                                 <h3>ayezakhan.ak</h3>
                                 <small></small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -538,7 +512,7 @@
                                 <h3>wahaj.official</h3>
                                 <small>Skardu, Pakistan</small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -581,7 +555,7 @@
                                 <h3>babarazam</h3>
                                 <small></small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -667,7 +641,7 @@
                                 <h3>babarazam</h3>
                                 <small></small>
                             </div>
-                           
+                            <img class="blue-tick" src="https://img.icons8.com/color/48/verified-badge.png" alt="verified-badge"/>
                         </div>
                         <span class="edit">
                             <i class="fa-solid fa-ellipsis"></i>
@@ -752,7 +726,7 @@
                             </div>
                             <div class="info">
                                 <h3>Omaima_siddique</h3>
-                                <small>Punjab</small>
+                                <small>Karachi, Pakistan</small>
                             </div>
                            
                         </div>
@@ -802,7 +776,7 @@
             <div class="category">
                 <h6 class="active">Primary</h6>
                 <h6>General</h6>
-                <h6 class="message-requests">Requests(3)</h6>
+                <h6 class="message-requests">Requests(5)</h6>
             </div>
             <div class="message">
                 <div class="profile-photo">
@@ -881,6 +855,48 @@
             <div class="request">
                 <div class="info">
                     <div class="profile-photo">
+                        <img src="./Images/TEDDY.jpg" width="50" height="50">
+                    </div>
+                    <div>
+                        <h5>khadija</h5>
+                        <p class="text-muted">
+                            5 mutual friends
+                        </p>
+                    </div>
+                </div>
+                <div class="action">
+                    <button class="btn btn-primary">
+                        Accept
+                    </button>
+                    <button class="btn">
+                        Decline
+                    </button>
+                </div>
+            </div>
+            <div class="request">
+                <div class="info">
+                    <div class="profile-photo">
+                        <img src="./Images/SIN.jpg" width="50" height="50">
+                    </div>
+                    <div>
+                        <h5>noor_ul_ain</h5>
+                        <p class="text-muted">
+                        4 mutual friends
+                        </p>
+                    </div>
+                </div>
+                <div class="action">
+                    <button class="btn btn-primary">
+                        Accept
+                    </button>
+                    <button class="btn">
+                        Decline
+                    </button>
+                </div>
+            </div>
+            <div class="request">
+                <div class="info">
+                    <div class="profile-photo">
                         <img src="./Images/ME.jpg" width="50" height="50">
                     </div>
                     <div>
@@ -937,8 +953,8 @@
             <h6>Aa</h6>
             <div class="choose-size">
                 <span class="font-size-1"></span>
-                <span class="font-size-2 active"></span>
-                <span class="font-size-3"></span>
+                <span class="font-size-2 "></span>
+                <span class="font-size-3 active"></span>
                 <span class="font-size-4"></span>
                 <span class="font-size-5"></span>
             </div>

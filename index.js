@@ -189,12 +189,14 @@ const changeBG =() => {
 
 Bg1.addEventListener('click',() => {
    
+    darkColorLightness = '0%';
+    whiteColorLightness ='100%';
+    lightColorLightness ='95%';
     Bg1.classList.add('active');
 
     Bg2.classList.remove('active');
     Bg3.classList.remove('active');
-   
-    window.location.reload();
+   changeBG();
 });
 
 
@@ -223,3 +225,148 @@ Bg3.addEventListener('click',() => {
     changeBG();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle Accept Button
+    function handleAccept(button) {
+        const request = button.closest('.request'); // Get the closest request block
+        const username = getUserName(request);
+        alert(`You accepted the friend request from ${username}`);
+        request.remove(); // Remove the request block
+    }
+
+    // Handle Decline Button
+    function handleDecline(button) {
+        const request = button.closest('.request'); // Get the closest request block
+        const username = getUserName(request);
+        alert(`You declined the friend request from ${username}`);
+        request.remove(); // Remove the request block
+    }
+
+    // Get username from the request block
+    function getUserName(request) {
+        return request.querySelector('h5').textContent;
+    }
+
+    // Attach event listeners
+    document.querySelectorAll('.btn-primary').forEach((button) => {
+        button.addEventListener('click', () => handleAccept(button));
+    });
+
+    document.querySelectorAll('.btn:not(.btn-primary)').forEach((button) => {
+        button.addEventListener('click', () => handleDecline(button));
+    });
+});
+
+document.getElementById('menu-icon').addEventListener('click', function () {
+    const popupMenu = document.getElementById('popup-menu');
+    popupMenu.style.display = popupMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// Log out function
+function logout() {
+    window.location.href = "index.html"; // Replace with the actual login page URL
+}
+
+// Close the popup if clicked outside
+document.addEventListener('click', function (event) {
+    const popupMenu = document.getElementById('popup-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    if (!popupMenu.contains(event.target) && event.target !== menuIcon) {
+        popupMenu.style.display = 'none';
+    }
+});
+
+const postContainer = document.querySelector('.feeds');
+
+    // Open the popup
+    document.querySelector('.create-post .btn-primary').addEventListener('click', function () {
+        document.getElementById('popup-overlay').style.display = 'block';
+    });
+
+    // Handle post submission
+    document.getElementById('popup-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get input values
+        const username = document.getElementById('post-username').value;
+        const location = document.getElementById('post-location').value;
+        const caption = document.getElementById('post-caption').value;
+        const imageFile = document.getElementById('post-image').files[0];
+
+        // Validate and read image
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imageUrl = e.target.result;
+
+            // Create new post
+            const newPost = `
+                <div class="feed">
+                    <div class="head">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="${imageUrl}" height="50" width="50" alt="${username}">
+                            </div>
+                            <div class="info">
+                                <h3>${username}</h3>
+                                <small>${location}</small>
+                            </div>
+                           
+                        </div>
+                        <span class="edit">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </span>
+                    </div>
+                    <div class="photo">
+                        <img src="${imageUrl}" alt="Post Image">
+                    </div>
+                    <div class="action-button">
+                        <div class="interaction-button">
+                            <span><i class="fa-regular fa-heart"></i></span>
+                            <span><i class="fa-regular fa-comment-dots"></i></span>
+                            <span><i class="fa-solid fa-share-nodes"></i></span> 
+                        </div>
+                        <div class="bookmark">
+                            <span><i class="fa-regular fa-bookmark"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="caption">
+                        <p><b>${username}</b> ${caption}</p>
+                    </div>
+                
+                </div>
+            `;
+
+            // Add new post to the top of the feed
+            postContainer.insertAdjacentHTML('afterbegin', newPost);
+
+            // Hide the popup
+            document.getElementById('popup-overlay').style.display = 'none';
+
+            // Clear form
+            document.getElementById('popup-form').reset();
+        };
+
+        if (imageFile) {
+            reader.readAsDataURL(imageFile);
+        }
+    });
+    // Open the popup
+document.querySelector('.create-post .btn-primary').addEventListener('click', function () {
+    document.getElementById('popup-overlay').style.display = 'flex';
+});
+
+// Close the popup when clicking outside
+document.getElementById('popup-overlay').addEventListener('click', function (event) {
+    const popup = document.querySelector('.popup');
+    if (!popup.contains(event.target)) {
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+});
+
+// Close the popup after form submission (already in the script above)
+document.getElementById('popup-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    // Handle form data and add a new post
+    document.getElementById('popup-overlay').style.display = 'none';
+});
